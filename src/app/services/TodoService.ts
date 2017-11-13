@@ -12,11 +12,10 @@ export default class TodoService {
     this.fetchList();
   }
   fetchList(): void {
-    let observable = this.apiService.fetchTodos();
-    observable.subscribe((todos) => {
+    this.apiService.fetchTodos().subscribe((todos) => {
       todos.forEach((todo) => {
         this.addTodo(new Todo({title: todo.title, isDone: todo.isDone}));
-      })
+      });
     });
   }
 
