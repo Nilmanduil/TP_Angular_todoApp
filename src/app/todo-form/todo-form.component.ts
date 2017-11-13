@@ -23,6 +23,7 @@ export class TodoFormComponent implements OnInit {
     if (this.newTodoTitle) {
       console.log('Todo not empty');
       this.todoEmitter.emit(new Todo({title: this.newTodoTitle, isDone: false}));
+      this.newTodoTitle = '';
     }
   }
 
