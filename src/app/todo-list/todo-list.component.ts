@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import Todo from '../classes/Todo';
+import TodoService from '../services/TodoService';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,16 +10,24 @@ import Todo from '../classes/Todo';
 })
 export class TodoListComponent implements OnInit {
   todoItems: Array<Todo> = [];
+  service: TodoService;
 
-  constructor() { }
+  constructor(service: TodoService) {
+    this.service = service;
+  }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.refreshList();
+  }
   addTodo(todo: Todo): void {
-    this.todoItems.push(todo);
+    this.service.addTodo(todo);
+    this.refreshList();
   }
   resetList() {
-    while (this.todoItems.length > 0) {
-      this.todoItems.pop();
-    }
+    this.service.clearList();
+    this.refreshList();
+  }
+  private refreshList(): void {
+    this.todoItems = this.service.getTodoList();
   }
 }
