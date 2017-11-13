@@ -1,4 +1,4 @@
-<app-todo-form (todoEmitter)="addTodo($event)"></app-todo-form>
+<app-todo-form (todoEmitter)="addTodo($event)" (resetEmitter)="resetList()"></app-todo-form>
 
 <h2>Tâches</h2>
 <ul *ngIf="todoItems.length > 0">

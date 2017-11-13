@@ -14,8 +14,11 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {  }
   addTodo(todo: Todo): void {
-    console.log('List : add todo');
     this.todoItems.push(todo);
   }
-
+  resetList() {
+    while (this.todoItems.length > 0) {
+      this.todoItems.pop();
+    }
+  }
 }

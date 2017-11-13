@@ -11,6 +11,9 @@ export class TodoFormComponent implements OnInit {
 
   @Output()
   todoEmitter = new EventEmitter();
+  @Output()
+  resetEmitter = new EventEmitter();
+
   newTodoTitle = '';
 
   constructor() { }
@@ -19,12 +22,13 @@ export class TodoFormComponent implements OnInit {
   }
 
   addTodo(event): void {
-    console.log('Form : add todo');
     if (this.newTodoTitle) {
-      console.log('Todo not empty');
       this.todoEmitter.emit(new Todo({title: this.newTodoTitle, isDone: false}));
       this.newTodoTitle = '';
     }
+  }
+  resetTodos(event): void {
+    this.resetEmitter.emit();
   }
 
 }
