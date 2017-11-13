@@ -1,7 +1,24 @@
 import Todo from '../classes/Todo';
+import {ApiService} from './api.service';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export default class TodoService {
   todoItems: Array<Todo> = [];
+  apiService: ApiService;
+
+  constructor(private api: ApiService) {
+    this.apiService = api;
+    this.fetchList();
+  }
+  fetchList(): void {
+    let observable = this.apiService.fetchTodos();
+    observable.subscribe((todos) => {
+      todos.forEach((todo) => {
+        this.addTodo(new Todo({title: todo.title, isDone: todo.isDone}));
+      })
+    });
+  }
 
   getTodoList(): Array<Todo> {
     return this.todoItems;
