@@ -12,13 +12,7 @@ export class TodoListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    const mocks: Array<Todo> = require('../mocks/Todo.json');
-    // const mocks = [];
-    mocks.forEach((todo) => {
-      this.todoItems.push(new Todo({title: todo.title, isDone: todo.isDone}));
-    });
-  }
+  ngOnInit() {  }
   addTodo(todo: Todo): void {
     console.log('List : add todo');
     this.todoItems.push(todo);
