@@ -14,7 +14,7 @@ export default class TodoService {
   fetchList(): void {
     this.apiService.fetchTodos().subscribe((todos) => {
       todos.forEach((todo) => {
-        this.addTodo(new Todo({title: todo.title, isDone: todo.isDone}));
+        this.todoItems.push(new Todo({id: todo.id, title: todo.title, isDone: todo.isDone}));
       });
     });
   }
@@ -23,7 +23,15 @@ export default class TodoService {
     return this.todoItems;
   }
   addTodo(todo: Todo): void {
-    this.todoItems.push(todo);
+    this.apiService.addTodo(todo).subscribe(
+      () => {
+        this.todoItems.push(todo);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {}
+    );
   }
   clearList(): void {
     while (this.todoItems.length > 0) {

@@ -14,8 +14,11 @@ export class ApiService {
     this.http = clientModule;
   }
 
-  fetchTodos(): Observable<Object> {
+  fetchTodos(): Observable<Array<Todo>> {
     return this.http.get(`${API_BASE_URL}${API_TODO}`);
+  }
+  addTodo(todo: Todo): Observable<Todo> {
+    return this.http.post(`${API_BASE_URL}${API_TODO}`, {"title": todo.title, "isDone": false});
   }
 
 }
