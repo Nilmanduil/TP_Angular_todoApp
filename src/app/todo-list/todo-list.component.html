@@ -1,8 +1,11 @@
 <app-todo-form (todoEmitter)="addTodo($event)"></app-todo-form>
 
 <h2>Tâches</h2>
-<ul>
+<ul *ngIf="todoItems.length > 0">
   <li *ngFor="let todoItem of todoItems">
     <app-todo-item [todo]="todoItem"></app-todo-item>
   </li>
 </ul>
+<p *ngIf="todoItems.length === 0">
+  Vous n'avez aucune tâche en cours, pensez à en rajouter ;-)
+</p>
