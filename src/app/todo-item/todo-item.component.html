@@ -1,4 +1,4 @@
 <p>
   <span [ngClass]="{'done': todo.isDone}">{{todo.title | uppercase}}</span>
-  <input type="checkbox" name="done" id="doneCb" [(ngModel)]="todo.isDone">
+  <input type="checkbox" name="done" [(ngModel)]="todo.isDone">
 </p>
